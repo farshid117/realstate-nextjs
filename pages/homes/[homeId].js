@@ -1,13 +1,13 @@
 import React from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/router'; 
 
-function SingleHome() {
+ function SingleHome() {
 
-    const router = userRouter()
-    console.log("router: ", router.query);
+    const route = useRouter()
+    console.log("router: ", route.query);
     
   return (
-    <div>SingleHome</div>
+    <div>SingleHome Details Page</div>
   )
 }
 
