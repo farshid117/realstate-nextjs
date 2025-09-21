@@ -1,5 +1,5 @@
 
-function Home({ id, price, title, img, meterage, roomCount }) {
+function Home({ id, price, title, img, meterage, roomCount }:any) {
 	return (
 		<div className='card'>
 			<img src={img} alt='House 6' className='card__img' />
