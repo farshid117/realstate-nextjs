@@ -74,7 +74,7 @@ import db from "../../data/db.json";
               </li>
               <li>
                 <span>سال ساخت</span>
-                <span>1402</span>
+                <span>{" "} </span>
               </li>
             </ul>
           </div>
