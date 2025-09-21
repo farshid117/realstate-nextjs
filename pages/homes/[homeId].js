@@ -32,7 +32,7 @@ function SingleHome() {
 
     // اگر دیتای واقعی async بود این تابع async می‌بود
     const findHome = () => {
-      const found = db.homes.find(h => String(h.id) === String(homeId));
+      const found = db.homes.find(home => String(home.id) === String(homeId));
       setSingleHome(found || null);
       setLoading(false);
     };
