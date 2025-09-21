@@ -28,6 +28,10 @@ import db from "../../data/db.json";
 
     const route = useRouter()
     console.log("router: ", route.query);
+    console.log("db: ", db);
+
+   const home = db.homes.find(home => home.id == route.query.homeId)
+   console.log("home: ", home);
     
   return (
     <div className={homeDetails}>
@@ -38,8 +42,8 @@ import db from "../../data/db.json";
         <div className={homeIntroduce}>
           <div className={homeTitle}>
             <h1>
-              <span>فروشگاه مجازی ماکسیما</span>
-              <span>250.000.000.000 تومان</span>
+              <span> {home.title} </span>
+              <span>{home.price.toLocaleString("fa")} تومان</span>
             </h1>
             <div className={tags}>
               <span className={`${tag} ${greenTag}`}>ویژه</span>
@@ -58,15 +62,15 @@ import db from "../../data/db.json";
             <ul className={homeReviewBottom}>
               <li>
                 <span>نوع ملک: </span>
-                <span>مغازه</span>
+                <span>{home.title}</span>
               </li>
               <li>
                 <span>اتاق: </span>
-                <span>1</span>
+                <span>{home.roomCount.toLocaleString("fa")}</span>
               </li>
               <li>
                 <span>متراژ</span>
-                <span>2360</span>
+                <span>{" "}{home.meterage.toLocaleString("fa")} متر مربع</span>
               </li>
               <li>
                 <span>سال ساخت</span>
