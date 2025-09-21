@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 
 import styles from "../../styles/home-details.module.css"
 
+import db from "../../data/db.json";
+
  function SingleHome() {
 
    // دِستراکچر با نام‌های رشته‌ای و نگاشت به نام‌هایی که در جاوااسکریپت معتبرند
