@@ -7,7 +7,7 @@ function Homes() {
 	const homeLists = db.homes;
 	return <div className='homes'>
     {
-      db.homes.map(home => <Home key={home.id} {...home} /> )
+      db.homes.slice(0,6).map(home => <Home key={home.id} {...home} /> )
     }
     </div>;
 }
