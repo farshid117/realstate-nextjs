@@ -1,9 +1,19 @@
-import React from 'react'
+import Features from "@/components/templates/index/Features";
+import Gallery from "@/components/templates/index/Gallery";
+import Homes from "@/components/templates/index/Homes";
+import Story from "@/components/templates/index/Story";
+
 
 function index() {
-  return (
-    <h1>Home page</h1>
-  )
+	return (
+		<>
+    <Features/>
+    <Story/>
+    <Homes/>
+    <Gallery/>
+
+    </>
+	);
 }
 
-export default index
+export default index;
