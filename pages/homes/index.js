@@ -1,4 +1,5 @@
 import React from 'react'
+import db from "../../data/db.json";
 
 function index() {
   return (
