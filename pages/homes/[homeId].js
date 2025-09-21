@@ -58,6 +58,8 @@ function SingleHome() {
       return String(num);
     }
   };
+  const formatYear = (year) =>
+    new Intl.NumberFormat("fa", { useGrouping: false }).format(year);
 
   return (
     <div className={homeDetails}>
@@ -69,7 +71,7 @@ function SingleHome() {
         <div className={homeIntroduce}>
           <div className={homeTitle}>
             <h1>
-              <span>{singleHome.title || "-"}</span>
+              <span className=' font-bold'>{singleHome.title || "-"}</span>
               <span>{format(singleHome.price)} تومان</span>
             </h1>
 
@@ -83,29 +85,29 @@ function SingleHome() {
 
           <div className={homeReview}>
             <div className={homeReviewTop}>
-              <h2>مرور کلی</h2>
-              <p>
-                <span>کد ملک : </span>
-                <span>{singleHome.code || '—'}</span>
-              </p>
+              <h2>مشخصات ملک</h2>
             </div>
 
             <ul className={homeReviewBottom}>
               <li>
+                <span>کد ملک : </span>
+                <span className=' font-bold'>{singleHome.code || '—'}</span>
+              </li>
+              <li>
                 <span>نوع ملک: </span>
-                <span>{singleHome.type || "-"}</span>
+                <span className=' font-bold'>{singleHome.type || "-"}</span>
               </li>
               <li>
                 <span>اتاق: </span>
-                <span>{format(singleHome.roomCount)}</span>
+                <span className=' font-bold'>{format(singleHome.roomCount)}</span>
               </li>
               <li>
-                <span>متراژ</span>
-                <span>{format(singleHome.meterage)} متر مربع</span>
+                <span>متراژ : </span>
+                <span className=' font-bold'>{format(singleHome.meterage)} متر مربع</span>
               </li>
               <li>
-                <span>سال ساخت</span>
-                <span>{singleHome.year || "-"}</span>
+                <span>سال ساخت : </span>
+                <span className=' font-bold'>{formatYear(singleHome.year) || "-"}</span>
               </li>
             </ul>
           </div>
