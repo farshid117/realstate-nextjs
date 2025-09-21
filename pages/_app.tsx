@@ -45,6 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
 					</li>
 				</ul>
 			</div>
+			
 			{/* todo: Header Right */}
 			<header className='header'>
 				<img src='/img/logo.png' alt='Nexter Logo' className='header__logo' />

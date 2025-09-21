@@ -221,7 +221,7 @@ body {
     position: absolute;
     top: 10%;
     left: 50%;
-    transform: translate(-25%, -50%);
+    transform: translate(-50%, -50%);
     width: 0;
     opacity: 0;
     display: flex;
@@ -274,6 +274,8 @@ body {
     width: 50%;
     visibility: visible;
     z-index: 35;
+    top: 15%;
+    left: 50%;
     transform: translate(-50%, -50%);
 }
 

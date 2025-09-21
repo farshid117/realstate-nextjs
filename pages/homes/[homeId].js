@@ -1,120 +1,127 @@
-import React from 'react'
-import { useRouter } from 'next/router'; 
-
-import styles from "../../styles/home-details.module.css"
-
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import styles from "../../styles/home-details.module.css";
 import db from "../../data/db.json";
 
- function SingleHome() {
+function SingleHome() {
+  const {
+    'home-details': homeDetails,
+    'home-details-top': homeDetailsTop,
+    'home-img': homeImg,
+    'home-interduce': homeIntroduce,
+    'home-title': homeTitle,
+    tags,
+    tag,
+    'green-tag': greenTag,
+    'brown-tag': brownTag,
+    'home-review': homeReview,
+    'home-review-top': homeReviewTop,
+    'home-review-bottom': homeReviewBottom,
+    'home-details-description': homeDetailsDescription,
+    // اگر از بقیه استفاده می‌کنی اضافه کن
+  } = styles;
 
-   // دِستراکچر با نام‌های رشته‌ای و نگاشت به نام‌هایی که در جاوااسکریپت معتبرند
-   const {
-     'home-details': homeDetails,
-     'home-details-top': homeDetailsTop,
-     'home-img': homeImg,
-     'home-interduce': homeIntroduce,
-     'home-title': homeTitle,
-     tags,
-     tag,
-     'green-tag': greenTag,
-     'brown-tag': brownTag,
-     'home-review': homeReview,
-     'home-review-top': homeReviewTop,
-     'home-review-bottom': homeReviewBottom,
-     'home-details-description': homeDetailsDescription,
-     adrress,
-     // اضافه کن بقیه کلاس‌ها رو در صورت نیاز
-   } = styles;
+  const route = useRouter();
+  const [singleHome, setSingleHome] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    const route = useRouter()
-    console.log("router: ", route.query);
-    console.log("db: ", db);
+  useEffect(() => {
+    // اگر هنوز homeId خالیه، صبر کن
+    const homeId = route.query.homeId;
+    if (!homeId) return;
 
-   const home = db.homes.find(home => home.id == route.query.homeId)
-   console.log("home: ", home);
-    
+    // اگر دیتای واقعی async بود این تابع async می‌بود
+    const findHome = () => {
+      const found = db.homes.find(h => String(h.id) === String(homeId));
+      setSingleHome(found || null);
+      setLoading(false);
+    };
+
+    findHome();
+  }, [route.query.homeId]);
+
+  // اگر هنوز دیتا نیومده، می‌تونی لودینگ یا placeholder نمایش بدی
+  if (loading) {
+    return <div className={homeDetails}>درحال بارگذاری...</div>;
+  }
+
+  if (!singleHome) {
+    return <div className={homeDetails}>ملکی پیدا نشد.</div>;
+  }
+
+  // حالا مطمئنی singleHome وجود داره؛ از روش ایمن برای toLocaleString استفاده می‌کنیم
+  const format = (num) => {
+    if (num === undefined || num === null) return '-';
+    try {
+      return Number(num).toLocaleString("fa");
+    } catch {
+      return String(num);
+    }
+  };
+
   return (
     <div className={homeDetails}>
       <div className={homeDetailsTop}>
         <div className={homeImg}>
-          <img src="/img/house-1.jpeg" alt="" />
+          <img src={singleHome.img || "/img/house-1.jpeg"} alt={singleHome.title || "house"} />
         </div>
+
         <div className={homeIntroduce}>
           <div className={homeTitle}>
             <h1>
-              <span> {home.title} </span>
-              <span>{home.price.toLocaleString("fa")} تومان</span>
+              <span>{singleHome.title || "-"}</span>
+              <span>{format(singleHome.price)} تومان</span>
             </h1>
+
             <div className={tags}>
               <span className={`${tag} ${greenTag}`}>ویژه</span>
               <span className={`${tag} ${brownTag}`}>برای اجاره</span>
             </div>
-            <div className={adrress}>آدرس : شیراز، میدان ارم</div>
+
+            <div className="adrress">آدرس : {singleHome.address || "شیراز، میدان ارم"}</div>
           </div>
+
           <div className={homeReview}>
             <div className={homeReviewTop}>
               <h2>مرور کلی</h2>
-              <p className="">
+              <p>
                 <span>کد ملک : </span>
-                <span>hz-HZ15</span>
+                <span>{singleHome.code || '—'}</span>
               </p>
             </div>
+
             <ul className={homeReviewBottom}>
               <li>
                 <span>نوع ملک: </span>
-                <span>{home.title}</span>
+                <span>{singleHome.type || "-"}</span>
               </li>
               <li>
                 <span>اتاق: </span>
-                <span>{home.roomCount.toLocaleString("fa")}</span>
+                <span>{format(singleHome.roomCount)}</span>
               </li>
               <li>
                 <span>متراژ</span>
-                <span>{" "}{home.meterage.toLocaleString("fa")} متر مربع</span>
+                <span>{format(singleHome.meterage)} متر مربع</span>
               </li>
               <li>
                 <span>سال ساخت</span>
-                <span>{" "} </span>
+                <span>{singleHome.year || "-"}</span>
               </li>
             </ul>
           </div>
         </div>
       </div>
-      <div className={homeReviewBottom}>
+
+      <div className="home-details-bottom">
         <div className={homeDetailsDescription}>
-          <p className="">توضیحات</p>
-          <p className="">
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
-            صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها
-            و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
-            لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
-            کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می
-            باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و
-            آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با
-            نرم افزارها شناخت بیشتری را برای طراحان رایانه ای
-            علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی
-            ایجاد کرد. در این صورت می توان امید داشت که تمام و
-            دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به
-            پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای
-            اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی
-            اساسا مورد استفاده قرار گیرد. مشاوران دوطرفه به
-            خریدار و فروشنده مشاوره می‌دهند. یک مشاور املاک
-            وظیفه دارد که با صداقت به هر دو طرف معامله مشاوره و
-            راهنمایی درستی بدهد. مشاوران دوطرفه باید از هر دو
-            طرف چه فروشنده و چه خریدار بخواهند که یک قرارداد
-            نمایندگی دوطرفه را امضا کنند. قوانین و مقررات خاصی
-            برای مشاوران دوطرفه وجود دارد، این دست از مشاوران
-            نسبت به دو دسته قبل کارشان سخت‌تر و پیچیده‌تر
-            است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
-            صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها
-            و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
-            لازم است.
+          <p>توضیحات</p>
+          <p>
+            {singleHome.description || `لورم ایپسوم ...`}
           </p>
         </div>
       </div>
     </div>
-
-  )
+  );
 }
 
-export default SingleHome
+export default SingleHome;
