@@ -1,7 +1,16 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }: AppProps) {
+
+	const route = useRouter()
+
+	function goToHomes(){
+		route.push("/homes")
+	}
+
 	return (
 		<div className='container'>
 			{/* todo: SideBar */}
@@ -19,29 +28,29 @@ export default function App({ Component, pageProps }: AppProps) {
 				<div className='sidebar__bg'></div>
 				<ul className='list'>
 					<li className='list__item'>
-						<a href='index.html' className='list__link'>
+						<Link href='/' className='list__link'>
 							صفحه اصلی
-						</a>
+						</Link>
 					</li>
 					<li className='list__item'>
-						<a href='#' className='list__link'>
+						<Link href='#' className='list__link'>
 							ویژگی ها
-						</a>
+						</Link>
 					</li>
 					<li className='list__item'>
-						<a href='' className='list__link'>
+						<Link href='' className='list__link'>
 							نظرات
-						</a>
+						</Link>
 					</li>
 					<li className='list__item'>
-						<a href='houses.html' className='list__link'>
+						<Link href='houses.html' className='list__link'>
 							خانه ها
-						</a>
+						</Link>
 					</li>
 					<li className='list__item'>
-						<a href='#' className='list__link'>
+						<Link href='#' className='list__link'>
 							گالری
-						</a>
+						</Link>
 					</li>
 				</ul>
 			</div>
@@ -51,7 +60,7 @@ export default function App({ Component, pageProps }: AppProps) {
 				<img src='/img/logo.png' alt='Nexter Logo' className='header__logo' />
 				<h3 className='u-heading-3 u-heading--light'>خانه خودتان:</h3>
 				<h1 className='u-heading-1'>با خرید خانه نهایت آزادی را احساس کنید</h1>
-				<button className='btn header__btn btn-brown'>
+				<button onClick={goToHomes} className='btn header__btn btn-brown'>
 					املاک ما را مشاهده کنید
 				</button>
 
