@@ -51,7 +51,7 @@ function Homes() {
 				<li className={paginationItem}>
 					<a href='#' className=''>
 						{" "}
-						&gt;{" "}
+						&lt;{" "}
 					</a>
 				</li>
 				<li className={paginationItem}>
@@ -59,9 +59,15 @@ function Homes() {
 						2
 					</a>
 				</li>
-				<li className={`${paginationItem} active`}>
+				<li className={`${paginationItem}  ${styles.pagination__item_active}`}>
 					<a href='#' className=''>
 						1
+					</a>
+				</li>
+				<li className={paginationItem}>
+					<a href='#' className=''>
+						{" "}
+						&gt;{" "}
 					</a>
 				</li>
 			</ul>

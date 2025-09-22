@@ -56,7 +56,7 @@ body {
             var(--color-secondry-light),
             var(--color-secondry-light)
         ),
-        url(/public/img/hero.jpeg);
+        url(/img/hero.jpeg);
     background-size: cover;
     background-position: center;
     grid-column: full-start / col-end 6;

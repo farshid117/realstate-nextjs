@@ -90,7 +90,7 @@
     color: var(--color-gray-light-1);
 }
 .pagination__item:hover,
-.pagination__item.active {
+.pagination__item_active {
     background-color: var(--color-gray-dark-1);
     color: #fff;
 }
