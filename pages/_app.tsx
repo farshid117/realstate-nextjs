@@ -1,15 +1,10 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }: AppProps) {
 
-	const route = useRouter()
 
-	function goToHomes(){
-		route.push("/homes")
-	}
 
 	return (
 		<div className='container'>
@@ -60,9 +55,9 @@ export default function App({ Component, pageProps }: AppProps) {
 				<img src='/img/logo.png' alt='Nexter Logo' className='header__logo' />
 				<h3 className='u-heading-3 u-heading--light'>خانه خودتان:</h3>
 				<h1 className='u-heading-1'>با خرید خانه نهایت آزادی را احساس کنید</h1>
-				<button onClick={goToHomes} className='btn header__btn btn-brown'>
+				<Link href="/homes"  className='btn header__btn btn-brown'>
 					املاک ما را مشاهده کنید
-				</button>
+				</Link>
 
 				<p className='seeon__text'>دیده می شود در</p>
 				<figure className='seeon__box-img'>

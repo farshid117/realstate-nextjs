@@ -1,92 +1,135 @@
-import React, { useEffect, useState ,useMemo} from "react";
-import db from "../../data/db.json";
-import HomeCard from "@/components/modules/HomeCard";
-
+import React, { useMemo, useState } from "react";
 import styles from "../../styles/homes.module.css";
+import db from "../../data/db.json";
+import HomeCard from "../../components/modules/HomeCard"; // مسیرت را تنظیم کن
 
 function Homes() {
-   console.log("db Home: ", db)
 	const pageSize = 6;
 	const [currentPage, setCurrentPage] = useState(1);
+	const [search, setSearch] = useState("");
+	const [filterBy, setFilterBy] = useState(""); // برای dropdown (price, rooms, address ...)
 
-	const pageNumber = useMemo(() => Math.ceil(db.homes.length / pageSize),[db.homes.length, pageSize]);
+	// 1) فیلتر روی db.homes — case-insensitive و بررسی چند فیلد (title, address, code)
+	const filteredHomes = useMemo(() => {
+		const q = String(search || "")
+			.trim()
+			.toLowerCase();
+		if (!q && !filterBy) return db.homes;
 
-	let dbfiltered = db.homes.slice(
-		(currentPage - 1) * pageSize,
-		currentPage * pageSize
+		return db.homes.filter((home) => {
+			// اگر خواستی فیلترهای بیشتر طبق filterBy اضافه کن
+			const haystack = [
+				home.title,
+				home.address || "",
+				home.code || "",
+				String(home.price),
+				String(home.meterage),
+				String(home.roomCount),
+			]
+				.join(" ")
+				.toLowerCase();
+
+			return haystack.includes(q);
+		});
+	}, [search, filterBy]);
+
+	// وقتی query تغییر کرد برگرد صفحه اول
+	React.useEffect(() => {
+		setCurrentPage(1);
+	}, [search, filterBy]);
+
+	// 2) تعداد صفحات بر اساس دادهٔ فیلترشده
+	const pageNumber = useMemo(
+		() => Math.max(1, Math.ceil(filteredHomes.length / pageSize)),
+		[filteredHomes.length, pageSize]
 	);
 
-	  function setPagination() {
-			return Array.from({ length: pageNumber }, (_, index) => {
-				const page = index + 1;
-				const isActive = currentPage === page; // شرط فعال بودن را تغییر بده
-				return (
-					<li
-						key={page}
-						className={`${styles.pagination__item} ${
-							isActive ? styles.pagination__item_active : ""
-						}`}
-						onClick={() => setCurrentPage(page)}
-					>
-						<a href='#'>{page}</a>
-					</li>
-				);
-			});
-		}
+	// 3) دادهٔ صفحهٔ جاری
+	const paginatedHomes = useMemo(() => {
+		const start = (currentPage - 1) * pageSize;
+		return filteredHomes.slice(start, start + pageSize);
+	}, [filteredHomes, currentPage, pageSize]);
 
-	/* todo: Adjust Css-Module */
-	const {
-		"home-section": homeSection,
-		"home-filter-search": homeFilterSearch,
-		"home-filter": homeFilter,
-		"home-search": homeSearch,
-		homes,
-		tags,
-		tag,
-		pagination__list: paginationList,
-		pagination__item: paginationItem,
-		"home-review": homeReview,
-		"home-review-top": homeReviewTop,
-		"home-review-bottom": homeReviewBottom,
-		"home-details-description": homeDetailsDescription,
-		// اگر از بقیه استفاده می‌کنی اضافه کن
-	} = styles;
+	// Helpers برای Pagination
+	const goToPage = (p:any) => {
+		const target = Math.min(Math.max(1, p), pageNumber);
+		setCurrentPage(target);
+	};
+
+	const handlePrev = (e:any) => {
+		e.preventDefault();
+		goToPage(currentPage - 1);
+	};
+	const handleNext = (e:any) => {
+		e.preventDefault();
+		goToPage(currentPage + 1);
+	};
+
+	// ساخت آیتم‌های صفحه
+	const paginationItems = useMemo(() => {
+		return Array.from({ length: pageNumber }, (_, i) => {
+			const page = i + 1;
+			const isActive = currentPage === page;
+			return (
+				<li
+					key={page}
+					className={`${styles.pagination__item} ${
+						isActive ? styles.pagination__item_active : ""
+					}`}
+					onClick={() => goToPage(page)}
+					aria-current={isActive ? "page" : undefined}>
+					<a href='#'>{page}</a>
+				</li>
+			);
+		});
+	}, [pageNumber, currentPage, styles]);
 
 	return (
-		<div className={homeSection} id='houses'>
-			<div className={homeFilterSearch}>
-				<div className={homeFilter}>
-					<select name='' id='' className=' caret-amber-800'>
-						<option value='' selected>
-							انتخاب کنید
-						</option>
-						<option value=''>بر اساس قیمت</option>
-						<option value=''>بر اساس تعداد اتاق</option>
-						<option value=''>بر اساس ادرس</option>
-						<option value=''>بر اساس اندازه</option>
+		<div className={styles["home-section"]} id='houses'>
+			<div className={styles["home-filter-search"]}>
+				<div className={styles["home-filter"]}>
+					<select
+						value={filterBy}
+						onChange={(e) => setFilterBy(e.target.value)}
+						className='caret-amber-800'>
+						<option value=''>انتخاب کنید</option>
+						<option value='price'>بر اساس قیمت</option>
+						<option value='rooms'>بر اساس تعداد اتاق</option>
+						<option value='address'>بر اساس آدرس</option>
+						<option value='meterage'>بر اساس اندازه</option>
 					</select>
 				</div>
-				<div className={homeSearch}>
-					<input type='text' placeholder='جستجو کنید' />
+
+				<div className={styles["home-search"]}>
+					<input
+						type='text'
+						value={search}
+						onChange={(e) => setSearch(e.target.value)}
+						placeholder='جستجو کنید'
+					/>
 				</div>
 			</div>
-			<div className={homes}>
-				{dbfiltered.map((home) => (
-					<HomeCard key={home.id} {...home} />
-				))}
+
+			<div className={styles.homes}>
+				{paginatedHomes.length ? (
+					paginatedHomes.map((home) => <HomeCard key={home.id} {...home} />)
+				) : (
+					<div>موردی یافت نشد.</div>
+				)}
 			</div>
-			<ul className={paginationList}>
-				<li className={paginationItem}>
-					<a href='#' className=''>
-						{" "}
-						&lt;{" "}
+
+			<ul className={styles.pagination__list}>
+				<li className={styles.pagination__item}>
+					<a href='#' onClick={(e)=>handlePrev(e)}>
+						&lt;
 					</a>
 				</li>
-				{setPagination()}
-				<li className={paginationItem}>
-					<a href='#' className=''>
-						{" "}
-						&gt;{" "}
+
+				{paginationItems}
+
+				<li className={styles.pagination__item}>
+					<a href='#' onClick={(e)=>handleNext(e)}>
+						&gt;
 					</a>
 				</li>
 			</ul>
