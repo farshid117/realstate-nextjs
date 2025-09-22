@@ -1,13 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState ,useMemo} from "react";
 import db from "../../data/db.json";
-import HomeCard from '@/components/modules/HomeCard';
+import HomeCard from "@/components/modules/HomeCard";
 
-import styles from "../../styles/homes.module.css"
+import styles from "../../styles/homes.module.css";
 
 function Homes() {
-  console.log(db)
+	console.log(db);
+	const pageSize = 6;
+	// const [pageNumber, setPageNumber] = useState();
+	const [currentPage, setCurrentPage] = useState(1);
 
-  const {
+	const pageNumber = useMemo(() => Math.ceil(db.homes.length / pageSize),[db.homes.length, pageSize]);
+	console.log("pageNumber: ", pageNumber);
+
+	let dbfiltered = db.homes.slice(
+		(currentPage - 1) * pageSize,
+		currentPage * pageSize
+	);
+
+	  function setPagination() {
+			return Array.from({ length: pageNumber }, (_, index) => {
+				const page = index + 1;
+				const isActive = currentPage === page; // شرط فعال بودن را تغییر بده
+				return (
+					<li
+						key={page}
+						className={`${styles.pagination__item} ${
+							isActive ? styles.pagination__item_active : ""
+						}`}
+						onClick={() => setCurrentPage(page)}
+					>
+						<a href='#'>{page}</a>
+					</li>
+				);
+			});
+		}
+
+	/* todo: Adjust Css-Module */
+	const {
 		"home-section": homeSection,
 		"home-filter-search": homeFilterSearch,
 		"home-filter": homeFilter,
@@ -24,7 +54,7 @@ function Homes() {
 		// اگر از بقیه استفاده می‌کنی اضافه کن
 	} = styles;
 
-  return (
+	return (
 		<div className={homeSection} id='houses'>
 			<div className={homeFilterSearch}>
 				<div className={homeFilter}>
@@ -43,7 +73,7 @@ function Homes() {
 				</div>
 			</div>
 			<div className={homes}>
-				{db.homes.map((home) => (
+				{dbfiltered.map((home) => (
 					<HomeCard key={home.id} {...home} />
 				))}
 			</div>
@@ -54,16 +84,7 @@ function Homes() {
 						&lt;{" "}
 					</a>
 				</li>
-				<li className={paginationItem}>
-					<a href='#' className=''>
-						2
-					</a>
-				</li>
-				<li className={`${paginationItem}  ${styles.pagination__item_active}`}>
-					<a href='#' className=''>
-						1
-					</a>
-				</li>
+				{setPagination()}
 				<li className={paginationItem}>
 					<a href='#' className=''>
 						{" "}
@@ -75,4 +96,4 @@ function Homes() {
 	);
 }
 
-export default Homes
+export default Homes;
