@@ -5,13 +5,11 @@ import HomeCard from "@/components/modules/HomeCard";
 import styles from "../../styles/homes.module.css";
 
 function Homes() {
-	console.log(db);
+   console.log("db Home: ", db)
 	const pageSize = 6;
-	// const [pageNumber, setPageNumber] = useState();
 	const [currentPage, setCurrentPage] = useState(1);
 
 	const pageNumber = useMemo(() => Math.ceil(db.homes.length / pageSize),[db.homes.length, pageSize]);
-	console.log("pageNumber: ", pageNumber);
 
 	let dbfiltered = db.homes.slice(
 		(currentPage - 1) * pageSize,

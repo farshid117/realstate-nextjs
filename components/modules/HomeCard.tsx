@@ -1,5 +1,5 @@
 
-function HomeCard({ id, price, title, img, meterage, roomCount }: any) {
+function HomeCard({ id, price, title, img, meterage, roomCount, address }: any) {
 	return (
 		<div className='card'>
 			<img src={img} alt='House 6' className='card__img' />
@@ -11,19 +11,25 @@ function HomeCard({ id, price, title, img, meterage, roomCount }: any) {
 				<span className=''>
 					<i className='fa fa-map-marker card__icon'></i>
 				</span>
-				<p className='card__text'>شیراز</p>
+				<p className='card__text font-bold'>{address.split("،")[0]}</p>
 				<span className=''>
 					<i className='fa fa-user card__icon'></i>
 				</span>
-				<p className='card__text'>{roomCount.toLocaleString("fa")} اتاق</p>
+				<p className='card__text font-bold'>
+					{roomCount.toLocaleString("fa")} اتاق
+				</p>
 				<span className=''>
 					<i className='fa fa-expand card__icon'></i>
 				</span>
-				<p className='card__text'>{meterage.toLocaleString("fa")} متر مربع</p>
+				<p className='card__text font-bold'>
+					{meterage.toLocaleString("fa")} متر مربع
+				</p>
 				<span className=''>
 					<i className='fa fa-key card__icon'></i>
 				</span>
-				<p className='card__text'>{price.toLocaleString("fa")} میلیون تومان</p>
+				<p className='card__text font-bold'>
+					{price.toLocaleString("fa")} میلیون تومان
+				</p>
 			</div>
 
 			<a href={`/homes/${id}`} className='btn btn-brown btn-card'>
