@@ -49,13 +49,13 @@ export default function App({ Component, pageProps }: AppProps) {
 					</li>
 				</ul>
 			</div>
-			
+
 			{/* todo: Header Right */}
 			<header className='header'>
 				<img src='/img/logo.png' alt='Nexter Logo' className='header__logo' />
 				<h3 className='u-heading-3 u-heading--light'>خانه خودتان:</h3>
-				<h1 className='u-heading-1'>با خرید خانه نهایت آزادی را احساس کنید</h1>
-				<Link href="/homes"  className='btn header__btn btn-brown'>
+				<h1 className='u-heading-1'>اعتماد به سیملک، آرامش در سرمایه‌گذاری!</h1>
+				<Link href='/homes' className='btn header__btn btn-brown'>
 					املاک ما را مشاهده کنید
 				</Link>
 
@@ -73,7 +73,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			</header>
 			{/* todo:  Header Left */}
 			<div className='real-tors'>
-				<p className='real-tors__tittle'>سه مالک برتر</p>
+				<p className='real-tors__tittle'>سه کارشناس برتر</p>
 				<div className='real-tors__list'>
 					<img
 						src='/img/realtor-1.jpeg'
@@ -81,8 +81,8 @@ export default function App({ Component, pageProps }: AppProps) {
 						className='real-tors__img'
 					/>
 					<div className='real-tors__details'>
-						<h3 className='u-heading-3 u-heading--white'>مهدی ایلخانی نسب</h3>
-						<p className='real-tors__text'>869 فروش خانه</p>
+						<h3 className='u-heading-3 u-heading--white'>حامد رفعت بهش</h3>
+						<p className='real-tors__text'>10 فروش خانه</p>
 					</div>
 
 					<img
@@ -91,8 +91,8 @@ export default function App({ Component, pageProps }: AppProps) {
 						className='real-tors__img'
 					/>
 					<div className='real-tors__details'>
-						<h3 className='u-heading-3 u-heading--white'>کوثر بهشتی</h3>
-						<p className='real-tors__text'>243 فروش خانه</p>
+						<h3 className='u-heading-3 u-heading--white'>ریحانه جاویدان</h3>
+						<p className='real-tors__text'>7 فروش خانه</p>
 					</div>
 
 					<img
@@ -101,8 +101,8 @@ export default function App({ Component, pageProps }: AppProps) {
 						className='real-tors__img'
 					/>
 					<div className='real-tors__details'>
-						<h3 className='u-heading-3 u-heading--white'>عرشیا احسنی</h3>
-						<p className='real-tors__text'>130 فروش خانه</p>
+						<h3 className='u-heading-3 u-heading--white'>منصورآبادی</h3>
+						<p className='real-tors__text'>3 فروش خانه</p>
 					</div>
 				</div>
 			</div>

@@ -86,9 +86,13 @@ function Homes() {
 					className={`${styles.pagination__item} ${
 						isActive ? styles.pagination__item_active : ""
 					}`}
-					onClick={() => goToPage(page)}
-					aria-current={isActive ? "page" : undefined}>
-					<a href='#'>{page.toLocaleString("fa")}</a>
+					onClick={() => goToPage(page)}>
+					<button
+						type='button'
+						onClick={() => goToPage(page)}
+						aria-current={isActive ? "page" : undefined}>
+						{page.toLocaleString("fa")}
+					</button>
 				</li>
 			);
 		});
