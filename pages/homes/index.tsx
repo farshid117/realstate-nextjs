@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import styles from "../../styles/homes.module.css";
 import db from "../../data/db.json";
 import HomeCard from "../../components/modules/HomeCard"; // مسیرت را تنظیم کن
@@ -34,7 +34,7 @@ function Homes() {
 	}, [search, filterBy]);
 
 	// وقتی query تغییر کرد برگرد صفحه اول
-	React.useEffect(() => {
+	useEffect(() => {
 		setCurrentPage(1);
 	}, [search, filterBy]);
 
@@ -44,6 +44,16 @@ function Homes() {
 		[filteredHomes.length, pageSize]
 	);
 
+	// بعد از محاسبه pageNumber:
+	useEffect(() => {
+		if (currentPage > pageNumber) {
+			setCurrentPage(pageNumber);
+		} else if (currentPage < 1) {
+			setCurrentPage(1);
+		}
+	}, [pageNumber, currentPage]);
+	
+
 	// 3) دادهٔ صفحهٔ جاری
 	const paginatedHomes = useMemo(() => {
 		const start = (currentPage - 1) * pageSize;
@@ -51,16 +61,16 @@ function Homes() {
 	}, [filteredHomes, currentPage, pageSize]);
 
 	// Helpers برای Pagination
-	const goToPage = (p:any) => {
+	const goToPage = (p: any) => {
 		const target = Math.min(Math.max(1, p), pageNumber);
 		setCurrentPage(target);
 	};
 
-	const handlePrev = (e:any) => {
+	const handlePrev = (e: any) => {
 		e.preventDefault();
 		goToPage(currentPage - 1);
 	};
-	const handleNext = (e:any) => {
+	const handleNext = (e: any) => {
 		e.preventDefault();
 		goToPage(currentPage + 1);
 	};
@@ -120,17 +130,25 @@ function Homes() {
 
 			<ul className={styles.pagination__list}>
 				<li className={styles.pagination__item}>
-					<a href='#' onClick={(e)=>handlePrev(e)}>
+					<button
+						type='button'
+						onClick={() => goToPage(currentPage - 1)}
+						disabled={currentPage === 1}
+						aria-label='صفحه قبلی'>
 						&lt;
-					</a>
+					</button>
 				</li>
 
 				{paginationItems}
 
 				<li className={styles.pagination__item}>
-					<a href='#' onClick={(e)=>handleNext(e)}>
+					<button
+						type='button'
+						onClick={() => goToPage(currentPage + 1)}
+						disabled={currentPage === pageNumber}
+						aria-label='صفحه بعدی'>
 						&gt;
-					</a>
+					</button>
 				</li>
 			</ul>
 		</div>
