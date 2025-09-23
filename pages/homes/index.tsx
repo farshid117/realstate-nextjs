@@ -7,9 +7,9 @@ function Homes() {
 	const pageSize = 6;
 	const [currentPage, setCurrentPage] = useState(1);
 	const [search, setSearch] = useState("");
-	const [filterBy, setFilterBy] = useState(""); // برای dropdown (price, rooms, address ...)
+	const [filterBy, setFilterBy] = useState("-1"); // برای dropdown (price, rooms, address ...)
 
-	// 1) فیلتر روی db.homes — case-insensitive و بررسی چند فیلد (title, address, code)
+	//todo: Searching
 	const filteredHomes = useMemo(() => {
 		const q = String(search || "")
 			.trim()
@@ -54,30 +54,46 @@ function Homes() {
 			setCurrentPage(1);
 		}
 	}, [pageNumber, currentPage]);
-	
 
-	// 3) دادهٔ صفحهٔ جاری
+	// todo: Filtering 
+	const sortedHomes = useMemo(() => {
+		// اگر هیچ فیلتری انتخاب نشده، برگرد filteredHomes بدون تغییر
+		if (!filteredHomes || filteredHomes.length === 0) return filteredHomes;
+
+		if (filterBy === "-1") return filteredHomes;
+
+		// کپی آرایه تا original دستکاری نشود
+		const arr = [...filteredHomes];
+
+		switch (filterBy) {
+			case "price":
+				arr.sort((a, b) => (a.price || 0) - (b.price || 0));
+				break;
+			case "rooms":
+				arr.sort((a, b) => (a.roomCount || 0) - (b.roomCount || 0));
+				break;
+			case "meterage":
+				arr.sort((a, b) => (a.meterage || 0) - (b.meterage || 0));
+				break;
+			case "address":
+				arr.sort((a, b) =>
+					(a.address || "").localeCompare(b.address || "", "fa")
+				);
+				break;
+			default:
+				break;
+		}
+
+		return arr;
+	}, [filteredHomes, filterBy]);
+
+	// سپس paginatedHomes را از sortedHomes بساز
 	const paginatedHomes = useMemo(() => {
 		const start = (currentPage - 1) * pageSize;
-		return filteredHomes.slice(start, start + pageSize);
-	}, [filteredHomes, currentPage, pageSize]);
+		return (sortedHomes || filteredHomes).slice(start, start + pageSize);
+	}, [sortedHomes, filteredHomes, currentPage, pageSize]);
 
-	// Helpers برای Pagination
-	const goToPage = (p: any) => {
-		const target = Math.min(Math.max(1, p), pageNumber);
-		setCurrentPage(target);
-	};
-
-	const handlePrev = (e: any) => {
-		e.preventDefault();
-		goToPage(currentPage - 1);
-	};
-	const handleNext = (e: any) => {
-		e.preventDefault();
-		goToPage(currentPage + 1);
-	};
-
-	// ساخت آیتم‌های صفحه
+	// todo: Pagination
 	const paginationItems = useMemo(() => {
 		return Array.from({ length: pageNumber }, (_, i) => {
 			const page = i + 1;
@@ -100,15 +116,30 @@ function Homes() {
 		});
 	}, [pageNumber, currentPage, styles]);
 
+	// Helpers برای Pagination
+	const goToPage = (p: any) => {
+		const target = Math.min(Math.max(1, p), pageNumber);
+		setCurrentPage(target);
+	};
+
+/* 	const handlePrev = (e: any) => {
+		e.preventDefault();
+		goToPage(currentPage - 1);
+	};
+	const handleNext = (e: any) => {
+		e.preventDefault();
+		goToPage(currentPage + 1);
+	}; */
+
 	return (
 		<div className={styles["home-section"]} id='houses'>
 			<div className={styles["home-filter-search"]}>
 				<div className={styles["home-filter"]}>
 					<select
-						value={filterBy}
+						defaultValue={filterBy}
 						onChange={(e) => setFilterBy(e.target.value)}
 						className='caret-amber-800'>
-						<option value=''>انتخاب کنید</option>
+						<option value='-1'>انتخاب کنید</option>
 						<option value='price'>بر اساس قیمت</option>
 						<option value='rooms'>بر اساس تعداد اتاق</option>
 						<option value='address'>بر اساس آدرس</option>
@@ -130,7 +161,9 @@ function Homes() {
 				{paginatedHomes.length ? (
 					paginatedHomes.map((home) => <HomeCard key={home.id} {...home} />)
 				) : (
-					<div className="font-bold text-center text-rose-700 ">موردی یافت نشد...😥🤦‍♂️</div>
+					<div className='font-bold text-center text-rose-700 '>
+						موردی یافت نشد...😥🤦‍♂️
+					</div>
 				)}
 			</div>
 
