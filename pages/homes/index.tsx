@@ -22,6 +22,7 @@ function Homes() {
 				home.title,
 				home.address || "",
 				home.code || "",
+				home.expertnumber || "",
 				String(home.price),
 				String(home.meterage),
 				String(home.roomCount),
@@ -128,7 +129,7 @@ function Homes() {
 				{paginatedHomes.length ? (
 					paginatedHomes.map((home) => <HomeCard key={home.id} {...home} />)
 				) : (
-					<div>موردی یافت نشد.</div>
+					<div className="font-bold text-center text-rose-700 ">موردی یافت نشد...😥🤦‍♂️</div>
 				)}
 			</div>
 

@@ -22,8 +22,11 @@ body {
 :root {
     /* COLORS */
     --color-white: #fff;
-    --color-primary: #c69963;
-    --color-primary-dark: #b28451;
+    /* --color-primary: #c69963;
+    --color-primary-dark: #b28451; */
+
+    --color-primary: #006284;
+    --color-primary-dark: #1A237E;
 
     --color-secondry: #101d2c;
     --color-secondry-light: #101d2cef;
@@ -31,6 +34,8 @@ body {
     --color-gray-light-1: #f9f7f6;
     --color-gray-light-2: #aaa;
 
+    /* --color-gray-dark-1: #54483a;
+    --color-gray-dark-2: #6d5d4b; */
     --color-gray-dark-1: #54483a;
     --color-gray-dark-2: #6d5d4b;
 
@@ -67,8 +72,8 @@ body {
 }
 
 .header__logo {
-    width: 15rem;
-    height: 4rem;
+    width: 50rem;
+    height: 15rem;
     justify-self: center;
     align-items: start;
 }
@@ -152,7 +157,8 @@ body {
 
 /* Sidebar */
 .sidebar {
-    background-color: var(--color-primary);
+    /* background-color: var(--color-primary); */
+    background-color: #006284;
     grid-row: 1 / -1;
     grid-column: sidebar-start / sidebar-end;
 }
@@ -278,7 +284,7 @@ body {
     width: 50%;
     max-height: 100vh;
     z-index: 35;
-    top: 20%;
+    top: 10%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -291,7 +297,7 @@ body {
     grid-column: full-start / col-end 4;
 
     background-image: linear-gradient(to left, #c699637e, #b2855180),
-        url(/public/img/back.jpg);
+        url(/img/back.jpg);
     background-size: cover;
 
     display: grid;

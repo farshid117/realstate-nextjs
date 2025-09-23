@@ -71,6 +71,7 @@
     gap: 1rem;
     color: #444;
     font-size: 1.4rem;
+    color: var(--color-white);
 }
 
 .pagination__item {
@@ -87,10 +88,10 @@
 
 .pagination__item a{
     text-decoration: none;
-    color: var(--color-gray-light-1);
+    color: var(--color-white);
 }
 .pagination__item:hover,
 .pagination__item_active {
-    background-color: var(--color-gray-dark-1);
+    background-color: var( --color-primary-dark);
     color: #fff;
 }

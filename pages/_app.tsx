@@ -52,9 +52,13 @@ export default function App({ Component, pageProps }: AppProps) {
 
 			{/* todo: Header Right */}
 			<header className='header'>
-				<img src='/img/logo.png' alt='Nexter Logo' className='header__logo' />
-				<h3 className='u-heading-3 u-heading--light'>خانه خودتان:</h3>
-				<h1 className='u-heading-1'>اعتماد به سیملک، آرامش در سرمایه‌گذاری!</h1>
+				<img src='/img/logo.webp' alt='Nexter Logo' className='header__logo' />
+				<h3 className='u-heading-3 u-heading--light font-bold'>
+					هلدینگ ساختمانی سیملک
+				</h3>
+				<h1 className='u-heading-1 font-bold'>
+					اعتماد به سیملک، آرامش در سرمایه‌گذاری!
+				</h1>
 				<Link href='/homes' className='btn header__btn btn-brown'>
 					املاک ما را مشاهده کنید
 				</Link>
@@ -73,7 +77,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			</header>
 			{/* todo:  Header Left */}
 			<div className='real-tors'>
-				<p className='real-tors__tittle'>سه کارشناس برتر</p>
+				<p className='real-tors__tittle font-bold'>سه کارشناس برتر</p>
 				<div className='real-tors__list'>
 					<img
 						src='/img/realtor-1.jpeg'
