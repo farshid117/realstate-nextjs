@@ -66,7 +66,10 @@ function Homes() {
 		const arr = [...filteredHomes];
 
 		switch (filterBy) {
-			case "price":
+			case "minprice":
+				arr.sort((a, b) => (a.price || 0) - (b.price || 0));
+				break;
+			case "maxprice":
 				arr.sort((a, b) => (a.price || 0) - (b.price || 0));
 				break;
 			case "rooms":
@@ -140,7 +143,8 @@ function Homes() {
 						onChange={(e) => setFilterBy(e.target.value)}
 						className='caret-amber-800'>
 						<option value='-1'>انتخاب کنید</option>
-						<option value='price'>بر اساس قیمت</option>
+						<option value='minprice'>بر اساس کمترین قیمت</option>
+						<option value='maxprice'>بر اساس بیشترین قیمت</option>
 						<option value='rooms'>بر اساس تعداد اتاق</option>
 						<option value='address'>بر اساس آدرس</option>
 						<option value='meterage'>بر اساس اندازه</option>
