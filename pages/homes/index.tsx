@@ -23,6 +23,7 @@ function Homes() {
 				home.address || "",
 				home.code || "",
 				home.expertnumber || "",
+				home.expertname || "",
 				String(home.price),
 				String(home.meterage),
 				String(home.roomCount),
