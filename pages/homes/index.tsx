@@ -78,7 +78,7 @@ function Homes() {
 					}`}
 					onClick={() => goToPage(page)}
 					aria-current={isActive ? "page" : undefined}>
-					<a href='#'>{page}</a>
+					<a href='#'>{page.toLocaleString("fa")}</a>
 				</li>
 			);
 		});
