@@ -53,17 +53,22 @@ export default function App({ Component, pageProps }: AppProps) {
 			{/* todo: Header Right */}
 			<header className='header'>
 				<img src='/img/logo.webp' alt='Nexter Logo' className='header__logo' />
-				<h3 className='u-heading-3 u-heading--light font-bold'>
+				<h3 className='u-heading-3 u-heading--light font-bold text-center '>
 					هلدینگ ساختمانی سیملک
 				</h3>
-				<h1 className='u-heading-1 font-bold'>
+				<h1 className='u-heading-1 font-bold text-center'>
 					اعتماد به سیملک، آرامش در سرمایه‌گذاری!
 				</h1>
-				<Link href='/homes' className='btn header__btn btn-brown'>
-					املاک ما را مشاهده کنید
-				</Link>
+				<h3 className='font-bold text-blue-300 text-center'>
+					سیملک، هر ملک یک داستان؛ ما نویسنده‌اش هستیم!
+				</h3>
+				<div className=''>
+					<Link href='/homes' className='btn header__btn btn-brown'>
+						املاک ما را مشاهده کنید
+					</Link>
+				</div>
 
-				<p className='seeon__text'>دیده می شود در</p>
+				{/* <p className='seeon__text'>دیده می شود در</p>
 				<figure className='seeon__box-img'>
 					<img src='/img/logo-bbc.png' alt='BBC' className='seeon__img' />
 					<img src='/img/logo-bi.png' alt='BBC' className='seeon__img' />
@@ -73,7 +78,7 @@ export default function App({ Component, pageProps }: AppProps) {
 						alt='BBC'
 						className='seeon__img'
 					/>
-				</figure>
+				</figure> */}
 			</header>
 			{/* todo:  Header Left */}
 			<div className='real-tors'>
