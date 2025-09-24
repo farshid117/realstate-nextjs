@@ -1,8 +1,16 @@
-
-function HomeCard({ id, price, title, img, meterage, roomCount, address }: any) {
+import Image from "next/image";
+function HomeCard({
+	id,
+	price,
+	title,
+	img,
+	meterage,
+	roomCount,
+	address,
+}: any) {
 	return (
 		<div className='card'>
-			<img src={img} alt='House 6' className='card__img' />
+			<Image src={img} alt={title || "تصویر ملک"} width={100} height={100}  className='card__img ' />
 			<h5 className='card__title'> {title} </h5>
 			<span className='card__like'>
 				<i className='fa fa-heart'></i>
