@@ -80,33 +80,33 @@ export default function App({ Component, pageProps }: AppProps) {
 				<p className='real-tors__tittle font-bold'>سه کارشناس برتر</p>
 				<div className='real-tors__list'>
 					<img
-						src='/img/realtor-1.jpeg'
-						alt='real-tors top 1'
-						className='real-tors__img'
-					/>
-					<div className='real-tors__details'>
-						<h3 className='u-heading-3 u-heading--white'>حامد رفعت بهش</h3>
-						<p className='real-tors__text'>10 فروش خانه</p>
-					</div>
-
-					<img
 						src='/img/realtor-2.jpeg'
 						alt='real-tors top 2'
 						className='real-tors__img'
 					/>
 					<div className='real-tors__details'>
 						<h3 className='u-heading-3 u-heading--white'>ریحانه جاویدان</h3>
+						<p className='real-tors__text'>10 فروش خانه</p>
+					</div>
+
+					<img
+						src='/img/expert2.webp'
+						alt='real-tors top 1'
+						className='real-tors__img'
+					/>
+					<div className='real-tors__details'>
+						<h3 className='u-heading-3 u-heading--white'>احسان منصورآبادی</h3>
 						<p className='real-tors__text'>7 فروش خانه</p>
 					</div>
 
 					<img
-						src='/img/realtor-3.jpeg'
+						src='/img/expert3.webp'
 						alt='real-tors top 3'
 						className='real-tors__img'
 					/>
 					<div className='real-tors__details'>
-						<h3 className='u-heading-3 u-heading--white'>منصورآبادی</h3>
-						<p className='real-tors__text'>3 فروش خانه</p>
+						<h3 className='u-heading-3 u-heading--white'>حامد رفعت بخش</h3>
+						<p className='real-tors__text'>5 فروش خانه</p>
 					</div>
 				</div>
 			</div>

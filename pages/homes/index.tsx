@@ -67,10 +67,10 @@ function Homes() {
 
 		switch (filterBy) {
 			case "minprice":
-				arr.sort((a, b) => (a.price || 0) - (b.price || 0));
+				arr.sort((a, b) => (a.price || 0) - (b.price || 0)); // صعودی
 				break;
 			case "maxprice":
-				arr.sort((a, b) => (a.price || 0) - (b.price || 0));
+				arr.sort((a, b) => (b.price || 0) - (a.price || 0)); // نزولی
 				break;
 			case "rooms":
 				arr.sort((a, b) => (a.roomCount || 0) - (b.roomCount || 0));
@@ -145,9 +145,9 @@ function Homes() {
 						<option value='-1'>انتخاب کنید</option>
 						<option value='minprice'>بر اساس کمترین قیمت</option>
 						<option value='maxprice'>بر اساس بیشترین قیمت</option>
-						<option value='rooms'>بر اساس تعداد اتاق</option>
-						<option value='address'>بر اساس آدرس</option>
-						<option value='meterage'>بر اساس متراژ</option>
+						<option value='rooms'>بر اساس تعداد اتاق (از کم به زیاد)</option>
+						<option value='meterage'>بر اساس متراژ(از کم به زیاد)</option>
+						<option value='address'>بر اساس اسم شهر به ترتیب حروف الفبا</option>
 					</select>
 				</div>
 
