@@ -147,7 +147,7 @@ function Homes() {
 						<option value='maxprice'>بر اساس بیشترین قیمت</option>
 						<option value='rooms'>بر اساس تعداد اتاق</option>
 						<option value='address'>بر اساس آدرس</option>
-						<option value='meterage'>بر اساس اندازه</option>
+						<option value='meterage'>بر اساس متراژ</option>
 					</select>
 				</div>
 
