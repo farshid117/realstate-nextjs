@@ -676,6 +676,21 @@ body {
     grid-column: 1 / -1;
     width: 100%;
 }
+.badge-green{
+    padding: 4px;
+    border-radius: 5px;
+    background-color: greenyellow ;
+}
+.badge-red{
+    padding: 4px;
+    border-radius: 5px;
+    background-color: rgb(237, 116, 120) ;
+}
+.badge-blue{
+    padding: 4px;
+    border-radius: 5px;
+    background-color: rgb(67, 99, 189) ;
+}
 /* End Components */
 
 @media only screen and (max-width: 75em) {

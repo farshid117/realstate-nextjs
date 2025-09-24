@@ -24,6 +24,7 @@ function Homes() {
 				home.code || "",
 				home.expertnumber || "",
 				home.expertname || "",
+				home.category || "",
 				String(home.price),
 				String(home.meterage),
 				String(home.roomCount),

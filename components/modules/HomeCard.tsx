@@ -48,7 +48,10 @@ function HomeCard({
 				<span className=''>
 					<i className='fa fa-key card__icon'></i>
 				</span>
-				<p className='card__text font-bold'> دسته بندی : {category} </p>
+				<p className='card__text font-bold'>
+					{" "}
+					دسته بندی : <span className="badge">{category}</span>{" "}
+				</p>
 			</div>
 
 			<a href={`/homes/${id}`} className='btn btn-brown btn-card'>
