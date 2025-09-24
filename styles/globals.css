@@ -685,11 +685,13 @@ body {
     padding: 4px;
     border-radius: 5px;
     background-color: rgb(237, 116, 120) ;
+    color: #fff;
 }
 .badge-blue{
     padding: 4px;
     border-radius: 5px;
-    background-color: rgb(67, 99, 189) ;
+    background-color: rgb(87, 87, 207) ;
+    color: #fff;
 }
 /* End Components */
 

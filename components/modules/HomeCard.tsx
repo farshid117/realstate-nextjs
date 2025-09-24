@@ -1,4 +1,6 @@
 import Image from "next/image";
+
+import clsx from "clsx";
 function HomeCard({
 	id,
 	title,
@@ -50,7 +52,17 @@ function HomeCard({
 				</span>
 				<p className='card__text font-bold'>
 					{" "}
-					دسته بندی : <span className="badge">{category}</span>{" "}
+					دسته بندی :{" "}
+					<span
+						className={clsx({
+							"badge-green":
+								category === "رهن کامل" || category === "رهن و اجاره",
+							"badge-blue": category === "فروش" || category === "خرید",
+							"badge-red": category === "مشارکت",
+						})}
+					>
+						{category}
+					</span>{" "}
 				</p>
 			</div>
 

@@ -3,8 +3,6 @@ import React from "react";
 import db from "../../../data/db.json";
 
 function Homes() {
-	console.log("db: ", db);
-	const homeLists = db.homes;
   
 	return (
 		<div className='homes'>
