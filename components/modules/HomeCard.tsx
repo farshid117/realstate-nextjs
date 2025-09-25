@@ -4,11 +4,16 @@ import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faHeart,
-	faMapMarkerAlt,
+	faMapMarker,
+	faUser,
+	faExpand,
 	faKey,
-	faChartBar,
-	faLock,
-	faTrophy,
+	faTags,
+	faDollar,
+	faMoneyBill,
+	faMoneyBillTransfer,
+	faMoneyBill1,
+	faBed,
 } from "@fortawesome/free-solid-svg-icons";
 function HomeCard({
 	id,
@@ -32,37 +37,72 @@ function HomeCard({
 			<h5 className='card__title'> {title} </h5>
 			<span className='card__like'>
 				{/* <i className='fa fa-heart'></i> */}
-				<FontAwesomeIcon
-					icon={faHeart}
-					size='3x'
-					style={{ color: "var(--color-primary)" }}
-				/>
+				<FontAwesomeIcon icon={faHeart} size='lg' style={{ color: "red" }} />
 			</span>
 			<div className='card__details'>
+				{/* address Feild */}
 				<span className=''>
-					<i className='fa fa-map-marker card__icon'></i>
+					{/* <i className='fa fa-map-marker card__icon'></i> */}
+					<FontAwesomeIcon
+						icon={faMapMarker}
+						className='card__icon'
+						size='xs'
+						style={{ color: "var(--color-primary)" }}
+					/>
 				</span>
 				<p className='card__text font-bold'>{address.split("،")[0]}</p>
+
+				{/* roomCount Field */}
 				<span className=''>
-					<i className='fa fa-user card__icon'></i>
+					{/* <i className='fa fa-user card__icon'></i> */}
+					<FontAwesomeIcon
+						icon={faBed}
+						className='card__icon'
+						size='xs'
+						style={{ color: "var(--color-primary)" }}
+					/>
 				</span>
 				<p className='card__text font-bold'>
 					{roomCount.toLocaleString("fa")} اتاق
 				</p>
+
+				{/* Metrage Feild */}
 				<span className=''>
-					<i className='fa fa-expand card__icon'></i>
+					{/* <i className='fa fa-expand card__icon'></i> */}
+					<FontAwesomeIcon
+						icon={faExpand}
+						className='card__icon'
+						size='xs'
+						style={{ color: "var(--color-primary)" }}
+					/>
 				</span>
 				<p className='card__text font-bold'>
 					{meterage.toLocaleString("fa")} متر مربع
 				</p>
+
+				{/* price feild */}
 				<span className=''>
-					<i className='fa fa-key card__icon'></i>
+					{/* <i className='fa fa-key card__icon'></i> */}
+					<FontAwesomeIcon
+						icon={faMoneyBill1}
+						className='card__icon'
+						size='xs'
+						style={{ color: "var(--color-primary)" }}
+					/>
 				</span>
 				<p className='card__text font-bold'>
 					{price.toLocaleString("fa")} میلیون تومان
 				</p>
+
+				{/* category feild */}
 				<span className=''>
-					<i className='fa fa-key card__icon'></i>
+					{/* <i className='fa fa-key card__icon'></i> */}
+					<FontAwesomeIcon
+						icon={faTags}
+						className='card__icon'
+						size='xs'
+						style={{ color: "var(--color-primary)" }}
+					/>
 				</span>
 				<p className='card__text font-bold'>
 					{" "}
