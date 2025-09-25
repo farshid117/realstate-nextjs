@@ -1,6 +1,15 @@
 import Image from "next/image";
 
 import clsx from "clsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+	faHeart,
+	faMapMarkerAlt,
+	faKey,
+	faChartBar,
+	faLock,
+	faTrophy,
+} from "@fortawesome/free-solid-svg-icons";
 function HomeCard({
 	id,
 	title,
@@ -22,7 +31,12 @@ function HomeCard({
 			/>
 			<h5 className='card__title'> {title} </h5>
 			<span className='card__like'>
-				<i className='fa fa-heart'></i>
+				{/* <i className='fa fa-heart'></i> */}
+				<FontAwesomeIcon
+					icon={faHeart}
+					size='3x'
+					style={{ color: "var(--color-primary)" }}
+				/>
 			</span>
 			<div className='card__details'>
 				<span className=''>
@@ -59,8 +73,7 @@ function HomeCard({
 								category === "رهن کامل" || category === "رهن و اجاره",
 							"badge-blue": category === "فروش" || category === "خرید",
 							"badge-red": category === "مشارکت",
-						})}
-					>
+						})}>
 						{category}
 					</span>{" "}
 				</p>
