@@ -1,11 +1,26 @@
 import React from "react";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+	faGlobe,
+	faMapMarkerAlt,
+	faKey,
+	faChartBar,
+	faLock,
+	faTrophy,
+} from "@fortawesome/free-solid-svg-icons";
+
 function Features() {
   return (
 		<div className='featurs'>
 			<div className='featur'>
 				<span className='featur__icon'>
-					<i className='fa fa-globe'></i>
+					{/* <i className='fa fa-globe'></i> */}
+					<FontAwesomeIcon
+						icon={faGlobe}
+						size='3x'
+						style={{ color: "var(--color-primary)" }}
+					/>
 				</span>
 				<h4 className='u-heading--dark font-bold'>بهترین خانه های لوکس جهان</h4>
 				<p className='u-paragraph'>
@@ -17,7 +32,12 @@ function Features() {
 
 			<div className='featur'>
 				<span className='featur__icon'>
-					<i className='fa fa-map-marker'></i>
+					{/* <i className='fa fa-map-marker'></i> */}
+					<FontAwesomeIcon
+						icon={faMapMarkerAlt}
+						size='3x'
+						className="text-[var(--color-primary)]"
+					/>
 				</span>
 				<h4 className='u-heading--dark font-bold'>
 					همه خانه ها در مکان های برتر
@@ -29,7 +49,12 @@ function Features() {
 			</div>
 			<div className='featur'>
 				<span className='featur__icon'>
-					<i className='fa fa-key'></i>
+					{/* <i className='fa fa-key'></i> */}
+					<FontAwesomeIcon
+						icon={faKey}
+						size='3x'
+						style={{ color: "var(--color-primary)" }}
+					/>
 				</span>
 				<h4 className='u-heading--dark font-bold'>خانه جدید در یک هفته</h4>
 				<p className='u-paragraph'>
@@ -40,7 +65,12 @@ function Features() {
 			</div>
 			<div className='featur'>
 				<span className='featur__icon'>
-					<i className='fa fa-bar-chart-o'></i>
+					{/* <i className='fa fa-bar-chart-o'></i> */}
+					<FontAwesomeIcon
+						icon={faChartBar}
+						size='3x'
+						style={{ color: "var(--color-primary)" }}
+					/>
 				</span>
 				<h4 className='u-heading--dark font-bold'>فقط بهترین خواص</h4>
 				<p className='u-paragraph'>
@@ -51,7 +81,12 @@ function Features() {
 			</div>
 			<div className='featur'>
 				<span className='featur__icon'>
-					<i className='fa fa-lock'></i>
+					{/* <i className='fa fa-lock'></i> */}
+					<FontAwesomeIcon
+						icon={faLock}
+						size='3x'
+						style={{ color: "var(--color-primary)" }}
+					/>
 				</span>
 				<h4 className='u-heading--dark font-bold'>پرداخت های ایمن در بعدی</h4>
 				<p className='u-paragraph'>
@@ -62,7 +97,12 @@ function Features() {
 			</div>
 			<div className='featur'>
 				<span className='featur__icon'>
-					<i className='fa fa-trophy'></i>
+					{/* <i className='fa fa-trophy'></i> */}
+					<FontAwesomeIcon
+						icon={faTrophy}
+						size='3x'
+						style={{ color: "var(--color-primary)" }}
+					/>
 				</span>
 				<h4 className='u-heading--dark font-bold'>1% مشاوران املاک برتر</h4>
 				<p className='u-paragraph'>
