@@ -1,7 +1,9 @@
 import React, { useMemo, useState, useEffect } from "react";
+import Head from "next/head";
+
+import HomeCard from "../../components/modules/HomeCard"; // مسیرت را تنظیم کن
 import styles from "../../styles/homes.module.css";
 import db from "../../data/db.json";
-import HomeCard from "../../components/modules/HomeCard"; // مسیرت را تنظیم کن
 
 function Homes() {
 	const pageSize = 6;
@@ -136,66 +138,78 @@ function Homes() {
 	}; */
 
 	return (
-		<div className={styles["home-section"]} id='houses'>
-			<div className={styles["home-filter-search"]}>
-				<div className={styles["home-filter"]}>
-					<select
-						defaultValue={filterBy}
-						onChange={(e) => setFilterBy(e.target.value)}
-						className='caret-amber-800'>
-						<option value='-1'>انتخاب کنید</option>
-						<option value='minprice'>بر اساس کمترین قیمت</option>
-						<option value='maxprice'>بر اساس بیشترین قیمت</option>
-						<option value='rooms'>بر اساس تعداد اتاق (از کم به زیاد)</option>
-						<option value='meterage'>بر اساس متراژ(از کم به زیاد)</option>
-						<option value='address'>بر اساس اسم شهر به ترتیب حروف الفبا</option>
-					</select>
-				</div>
+		<>
+			<Head>
+				<title> لیست فایلها - املاک سیملک</title>
+				<meta
+					name='description'
+					content='لیست کامل خرید، فروش و اجاره املاک در محله‌های برتر؛ مقایسه قیمت‌ها، مشاهده دسته‌بندی‌ها و انتخاب سریع بهترین خانه یا آپارتمان با کمک هوش مصنوعی املاک.'
+				/>
+			</Head>
 
-				<div className={styles["home-search"]}>
-					<input
-						type='text'
-						value={search}
-						onChange={(e) => setSearch(e.target.value)}
-						placeholder='جستجو کنید'
-					/>
-				</div>
-			</div>
-
-			<div className={styles.homes}>
-				{paginatedHomes.length ? (
-					paginatedHomes.map((home) => <HomeCard key={home.id} {...home} />)
-				) : (
-					<div className='font-bold text-center text-rose-700 '>
-						موردی یافت نشد...😥🤦‍♂️
+			<div className={styles["home-section"]} id='houses'>
+				<div className={styles["home-filter-search"]}>
+					<div className={styles["home-filter"]}>
+						<select
+							defaultValue={filterBy}
+							onChange={(e) => setFilterBy(e.target.value)}
+							className='caret-amber-800'>
+							<option value='-1'>انتخاب کنید</option>
+							<option value='minprice'>بر اساس کمترین قیمت</option>
+							<option value='maxprice'>بر اساس بیشترین قیمت</option>
+							<option value='rooms'>بر اساس تعداد اتاق (از کم به زیاد)</option>
+							<option value='meterage'>بر اساس متراژ(از کم به زیاد)</option>
+							<option value='address'>
+								بر اساس اسم شهر به ترتیب حروف الفبا
+							</option>
+						</select>
 					</div>
-				)}
+
+					<div className={styles["home-search"]}>
+						<input
+							type='text'
+							value={search}
+							onChange={(e) => setSearch(e.target.value)}
+							placeholder='جستجو کنید'
+						/>
+					</div>
+				</div>
+
+				<div className={styles.homes}>
+					{paginatedHomes.length ? (
+						paginatedHomes.map((home) => <HomeCard key={home.id} {...home} />)
+					) : (
+						<div className='font-bold text-center text-rose-700 '>
+							موردی یافت نشد...😥🤦‍♂️
+						</div>
+					)}
+				</div>
+
+				<ul className={styles.pagination__list}>
+					<li className={styles.pagination__item}>
+						<button
+							type='button'
+							onClick={() => goToPage(currentPage - 1)}
+							disabled={currentPage === 1}
+							aria-label='صفحه قبلی'>
+							&lt;
+						</button>
+					</li>
+
+					{paginationItems}
+
+					<li className={styles.pagination__item}>
+						<button
+							type='button'
+							onClick={() => goToPage(currentPage + 1)}
+							disabled={currentPage === pageNumber}
+							aria-label='صفحه بعدی'>
+							&gt;
+						</button>
+					</li>
+				</ul>
 			</div>
-
-			<ul className={styles.pagination__list}>
-				<li className={styles.pagination__item}>
-					<button
-						type='button'
-						onClick={() => goToPage(currentPage - 1)}
-						disabled={currentPage === 1}
-						aria-label='صفحه قبلی'>
-						&lt;
-					</button>
-				</li>
-
-				{paginationItems}
-
-				<li className={styles.pagination__item}>
-					<button
-						type='button'
-						onClick={() => goToPage(currentPage + 1)}
-						disabled={currentPage === pageNumber}
-						aria-label='صفحه بعدی'>
-						&gt;
-					</button>
-				</li>
-			</ul>
-		</div>
+		</>
 	);
 }
 
